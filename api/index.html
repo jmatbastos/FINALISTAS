@@ -1,0 +1,125 @@
+
+<html>
+
+    <head>
+    
+       <title>IPM</title>
+    
+       <meta  http-equiv="Content-Type" content="text/html; charset=iso8859-1" />
+    
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+            body { 
+            margin: 5%;
+            margin-left: 5%; 
+            margin-right: 5%; 
+            font-family: sans-serif;
+            font-size: small;
+            }
+    
+            pre { 
+            font-family: monospace; 
+            }
+    
+            table.code {
+            color: black;
+            background-color: #ccccff;
+            font-size: 100%;
+            width: 100%;
+            border: solid;
+            border-width: thin;
+            }
+    
+            table.output {
+            color: black;
+            background-color: #ffccff;
+            font-size: 100%;
+            width: 100%;
+            border: solid;
+            border-width: thin;
+            }
+    
+            th, td {
+                padding: 15px;
+                text-align: left;
+            }
+                
+                
+            li {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        </style>
+    
+    </head>
+    
+    
+    
+    <body>
+    
+    
+    
+    <h2>Descri&ccedil;&atilde;o dos m&eacute;todos dispon&iacute;veis na API de acesso &agrave;  base de dados</h2>
+    
+    <p>A estrutura da base de dados pode ser consultada  <a href="db_SQL">aqui</a></p>
+    
+    <p> Todos os dados recebidos da API ou enviados &agrave; API est&atilde;o no formato JSON. Pode testar os m&eacute;todos dispon&iacute;veis com o comando "curl", por exemplo 
+    
+    <br />
+    <br /><tt>curl -X GET  'http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/publishers.php?email=jbastos@ualg.pt' </tt>
+    
+    <br /><tt>curl -X POST  'http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/publishers.php' -d '{"name":"Mary Stevens","email":"stevens@gmail.com", "password":"sWd356"}'</tt>
+    
+    <br /> 
+    <br />ou utilizando a extens&atilde;o "THUNDER" do Visual Studio Code, ou utilizando o site <a href="https://postman.com">https://postman.com</a></p>
+    
+   
+    <h3> API publishers </h3>
+    <ul>
+        <li><b>Verifica se um utilizador j&aacute; se encontra registado na base de dados:
+        </b><br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/publishers.php?email=jbastos@ualg.pt <br />
+            retorna: JSON string {"email":"jbastos@ualg.pt"} ou null
+        </li>
+        <li><b>Registo de um utilizador:
+        </b><br /> <b>POST</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/publishers.php<br />
+            Body:  JSON string {"name" :"Jose Bastos","email": "jbastos@ualg.pt","password": "segredo"}	<br />
+            retorna: JSON string {"id":"1","name":"Jose Bastos","email":"jbastos@ualg.pt"} ou null		
+        </li>	
+        <li><b>Login de um utilizador:
+        </b><br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/publishers.php?email=jbastos@ualg.pt&password="segredo" <br />
+            retorna: JSON string {"id":"1","name":"Jose Bastos","email":"jbastos@ualg.pt", "session_id":"827ccb0eea8a..."} ou null
+        </li>
+    </ul>
+
+    <h3> API jobcategories </h3>	
+    <ul>	    
+        <li><b>Todas as categorias:</b>
+        <br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/jobcategories.php<br />
+            retorna: JSON string [{"id":"1","name":"Full-time","description":null,"image":null},...]
+        </li>
+    </ul>
+
+    <h3> API jobs </h3>	
+    <ul>	    
+        <li><b>Todos os anuncios de emprego:</b>
+        <br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/jobs.php<br />
+            retorna: JSON string [{"title":"Senior Programmer in Laravel","id":"2","image":"2.jpg","location":"Faro","salary":"70","description":"You will work alongside some of the best developers","publisher":"Peter Smith","category":"Part-time"}, ...]
+        </li>
+        <li><b>Apenas os anuncios de uma categoria:</b>
+            <br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/jobs.php?cat_id=2<br />
+                retorna: JSON string [{"title":"Dropbox Product Designer","id":"1","image":"1.jpg","location":"Barcelona","salary":"50","description":"Developing cutting-edge digital solutions","publisher":"John Stewart","category":"Freelancer"}, ...]
+            </li>        
+        <li><b>Registo de um novo anuncio:</b> 
+            <br /> <b>POST</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/jobs.php?session_id=827ccb0eea8a...<br />
+                Body: JSON string {"company":"Google", "image":"1.jpg", "cat_id":"1", "location":"California", "title":"Vue developer", "description":"seeking junior programmer", "salary":"60k", "publisher_id":"3"}<br />
+                retorna: JSON string {"title":"Vue developer","id":"6","image":"1.jpg","location":"California","salary":"60","description":"seeking junior programmer","publisher":"Marc Andressen","category":"Full-time"}
+        </li>
+    </ul>
+    
+    
+    </body>
+    
+    </html>
+    
