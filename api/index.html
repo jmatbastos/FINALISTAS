@@ -68,9 +68,9 @@
     <p> Todos os dados recebidos da API ou enviados &agrave; API est&atilde;o no formato JSON. Pode testar os m&eacute;todos dispon&iacute;veis com o comando "curl", por exemplo 
     
     <br />
-    <br /><tt>curl -X GET  'http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/publishers.php?email=jbastos@ualg.pt' </tt>
+    <br /><tt>curl -X GET  'http://daw.deei.fct.ualg.pt/~a12345/EXAME/api/publishers.php?email=jbastos@ualg.pt' </tt>
     
-    <br /><tt>curl -X POST  'http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/publishers.php' -d '{"name":"Mary Stevens","email":"stevens@gmail.com", "password":"sWd356"}'</tt>
+    <br /><tt>curl -X POST  'http://daw.deei.fct.ualg.pt/~a12345/EXAME/api/publishers.php' -d '{"name":"Mary Stevens","email":"stevens@gmail.com", "password":"sWd356"}'</tt>
     
     <br /> 
     <br />ou utilizando a extens&atilde;o "THUNDER" do Visual Studio Code, ou utilizando o site <a href="https://postman.com">https://postman.com</a></p>
@@ -79,24 +79,28 @@
     <h3> API publishers </h3>
     <ul>
         <li><b>Verifica se um utilizador j&aacute; se encontra registado na base de dados:
-        </b><br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/publishers.php?email=jbastos@ualg.pt <br />
+        </b><br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/EXAME/api/publishers.php?email=jbastos@ualg.pt <br />
             retorna: JSON string {"email":"jbastos@ualg.pt"} ou null
         </li>
         <li><b>Registo de um utilizador:
-        </b><br /> <b>POST</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/publishers.php<br />
+        </b><br /> <b>POST</b> http://daw.deei.fct.ualg.pt/~a12345/EXAME/api/publishers.php<br />
             Body:  JSON string {"name" :"Jose Bastos","email": "jbastos@ualg.pt","password": "segredo"}	<br />
             retorna: JSON string {"id":"1","name":"Jose Bastos","email":"jbastos@ualg.pt"} ou null		
         </li>	
         <li><b>Login de um utilizador:
-        </b><br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/publishers.php?email=jbastos@ualg.pt&password="segredo" <br />
+        </b><br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/EXAME/api/publishers.php?email=jbastos@ualg.pt&password="segredo" <br />
             retorna: JSON string {"id":"1","name":"Jose Bastos","email":"jbastos@ualg.pt", "session_id":"827ccb0eea8a..."} ou null
+        </li>
+        <li><b>Logout de um utilizador:
+        </b><br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/EXAME/api/publishers.php?session_id=s3nb5bab0toh1hard8u4036h7m <br />
+            retorna: JSON string {"message": "Session destroyed"} ou null
         </li>
     </ul>
 
     <h3> API jobcategories </h3>	
     <ul>	    
         <li><b>Todas as categorias:</b>
-        <br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/jobcategories.php<br />
+        <br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/EXAME/api/jobcategories.php<br />
             retorna: JSON string [{"id":"1","name":"Full-time","description":null,"image":null},...]
         </li>
     </ul>
@@ -104,17 +108,17 @@
     <h3> API jobs </h3>	
     <ul>	    
         <li><b>Todos os anuncios de emprego:</b>
-        <br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/jobs.php<br />
-            retorna: JSON string [{"title":"Senior Programmer in Laravel","id":"2","image":"2.jpg","location":"Faro","salary":"70","description":"You will work alongside some of the best developers","publisher":"Peter Smith","category":"Part-time"}, ...]
+        <br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/EXAME/api/jobs.php<br />
+            retorna: JSON string [{"title":"FullStack Developer in Shopify","id":"3","image":"3.jpg","location":"Brussels","salary":"80000","description":"Do you look beyond the code and back-end solution?","company":"Facebook","created_at":"2019-12-18 23:30:51","publisher":"Neil Diamond","category":"Full-time"}, ...]
         </li>
         <li><b>Apenas os anuncios de uma categoria:</b>
-            <br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/jobs.php?cat_id=2<br />
-                retorna: JSON string [{"title":"Dropbox Product Designer","id":"1","image":"1.jpg","location":"Barcelona","salary":"50","description":"Developing cutting-edge digital solutions","publisher":"John Stewart","category":"Freelancer"}, ...]
+            <br /> <b>GET</b> http://daw.deei.fct.ualg.pt/~a12345/EXAME/api/jobs.php?cat_id=2<br />
+                retorna: JSON string [{"title":"Senior Programmer in Laravel","id":"2","image":"2.jpg","location":"Faro","salary":"70000","description":"You will work alongside some of the best developers","company":"Spotify ","created_at":"2019-12-18 23:25:53","publisher":"Peter Smith","category":"Part-time"}, ...]
             </li>        
         <li><b>Registo de um novo anuncio:</b> 
-            <br /> <b>POST</b> http://daw.deei.fct.ualg.pt/~a12345/RECURSO/api/jobs.php?session_id=827ccb0eea8a...<br />
-                Body: JSON string {"company":"Google", "image":"1.jpg", "cat_id":"1", "location":"California", "title":"Vue developer", "description":"seeking junior programmer", "salary":"60k", "publisher_id":"3"}<br />
-                retorna: JSON string {"title":"Vue developer","id":"6","image":"1.jpg","location":"California","salary":"60","description":"seeking junior programmer","publisher":"Marc Andressen","category":"Full-time"}
+            <br /> <b>POST</b> http://daw.deei.fct.ualg.pt/~a12345/EXAME/api/jobs.php?session_id=s3nb5bab0toh1hard8u4036h7m<br />
+                Body: JSON string {"company": "Google","image": "1.jpg","cat_id": "1","location": "California","title": "Vue developer","description": "seeking junior programmer","salary": "10000"}<br />
+                retorna: JSON string {"title": "Vue developer","id": "13","image": "1.jpg","location": "California","salary": "10000","description": "seeking junior programmer","company": "Google","created_at": "2024-01-02 18:18:16","publisher": "abx","category": "Full-time"}
         </li>
     </ul>
     
