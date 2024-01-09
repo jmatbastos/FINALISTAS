@@ -1,12 +1,11 @@
 <template>
     <div id="wrapper">  
                 
-                <!-- AVISO: ALTERAR O PATH '/' PARA A VISTA 'Home' NO EXAME  -->
+                <!-- AVISO: EM router/index.js ALTERAR O PATH '/' PARA O COMPONENTE 'Home' NO EXAME  -->
                 <div id="exame">            
                     <img alt="Vue logo" src="@/assets/logo.png">
                     <h1>Welcome to Your EXAME Vue App</h1>
-                </div>
-                <!-- E COMENTAR OU APAGAR A VISTA 'Welcome' NO EXAME   -->		
+                </div>	
 
     </div>
 

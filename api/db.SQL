@@ -1,9 +1,18 @@
 SET FOREIGN_KEY_CHECKS=0;
+
+--
+-- Drop tables
+--
+
+DROP TABLE IF EXISTS `jobs`;
+DROP TABLE IF EXISTS `jobcategories`;
+DROP TABLE IF EXISTS `publishers`;
+
 --
 -- Table structure for table `publishers`
 --
 
-CREATE TABLE IF NOT EXISTS `publishers` (
+CREATE TABLE `publishers` (
  `id` int(11) NOT NULL auto_increment,
  `name` varchar(255) default NULL,
  `email` varchar(255) default NULL,
@@ -31,7 +40,7 @@ INSERT INTO `publishers` VALUES (1,'John Stewart','john.stewart@gmail.com','2019
 -- Table structure for table `jobcategories`
 --
 
-CREATE TABLE IF NOT EXISTS `jobcategories` (
+CREATE TABLE `jobcategories` (
  `id` int(11) NOT NULL auto_increment,
  `name` varchar(255) default NULL,
  `description` varchar(255) default NULL,
@@ -49,7 +58,7 @@ INSERT INTO `jobcategories` VALUES (1,'Full-time',NULL,NULL),(2,'Part-time',NULL
 -- Table structure for table `jobs`
 --
 
-CREATE TABLE IF NOT EXISTS `jobs` (
+CREATE TABLE `jobs` (
  `id` int(11) NOT NULL auto_increment,
  `cat_id` int(11) NOT NULL,
  `publisher_id` int(11) NOT NULL,

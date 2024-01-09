@@ -7,6 +7,7 @@ import Login from '@/views/Login.vue'
 import Publish from '@/views/Publish.vue'
 import Welcome from '@/views/Welcome.vue'
 
+//AVISO: ALTERAR O PATH '/' PARA O COMPONENTE 'Home' NO EXAME
 
 const routes = [
   {
