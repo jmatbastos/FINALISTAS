@@ -10,14 +10,14 @@
 			<div class="site-logo col-6"><router-link to="/">Careers</router-link></div>
 
 			<nav class="mx-auto site-navigation">
-				<ul v-if="userIsEmpty" class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+				<ul v-if="userIsEmpty" class="site-menu js-clone-nav ">
 					<li><router-link to="/jobs">Jobs</router-link></li>
 					<li><router-link to="/login">Login</router-link></li>						
 					<li><router-link to="/register">Register</router-link></li>	  
 				</ul>
 
 
-				<ul v-else class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+				<ul v-else class="site-menu js-clone-nav ">
 					<li><router-link to="/jobs">Jobs</router-link></li>					
 					<li><router-link to="/publish">Publish</router-link></li>
 					<li><a @click.prevent="logout()" href="/logout">Logout</a></li>
