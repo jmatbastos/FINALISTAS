@@ -1,7 +1,7 @@
 <?php
 
 $hostname = "10.10.23.184";
-$db_name = "db_a12345";
+$db_name = "db_12345";
 $db_user = "a12345";
 $db_passwd = "PASS";
 

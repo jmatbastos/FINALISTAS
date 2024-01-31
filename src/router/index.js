@@ -4,7 +4,7 @@ import Jobs from '@/views/Jobs.vue'
 import Register from '@/views/Register.vue'
 import Message from '@/views/Message.vue'
 import Login from '@/views/Login.vue'
-import Publish from '@/views/Publish.vue'
+import Apply from '@/views/Apply.vue'
 import Welcome from '@/views/Welcome.vue'
 
 //AVISO: ALTERAR O PATH '/' PARA O COMPONENTE 'Home' NO EXAME
@@ -36,8 +36,8 @@ const routes = [
   },
 
   {
-    path: '/publish',
-    component: Publish
+    path: '/apply/:job_id',
+    component: Apply
   },
                 
 ]

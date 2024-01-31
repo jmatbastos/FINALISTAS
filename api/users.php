@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['email']) && !isset($_GET[
 
 
 			// criar query numa string (avoid SQL injection)
-			$query  = "SELECT id,name,email FROM publishers where email='" . mysqli_real_escape_string($db, trim($_GET['email'])) . "'";
+			$query  = "SELECT id,name,email FROM users where email='" . mysqli_real_escape_string($db, trim($_GET['email'])) . "'";
 			// executar a query
 			if(!($result = @ mysqli_query($db, $query)))
 					showerror($db);
@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['email']) && isset($_GET['
 
 	if($db) {
 		// criar query numa string
-		$query  = "SELECT id, name, email FROM publishers WHERE email='$email' AND password_digest='$password'";
+		$query  = "SELECT id, name, email FROM users WHERE email='$email' AND password_digest='$password'";
 
 		// executar a query
 		if(!($result = @ mysqli_query($db, $query)))
@@ -108,14 +108,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		if($db) {
 			// criar query numa string
-			$query  = "INSERT INTO publishers SET name='$name',email='$email',password_digest='$password',created_at=NOW(),updated_at=NOW()";
+			$query  = "INSERT INTO users SET name='$name',email='$email',password_digest='$password',created_at=NOW(),updated_at=NOW()";
 		
 			// executar a query
 			if(!($result = @ mysqli_query($db, $query)))
 				showerror($db);
 
 			// criar query numa string
-			$query  = "SELECT id, name, email FROM publishers order by id desc limit 1";
+			$query  = "SELECT id, name, email FROM users order by id desc limit 1";
 
 			// executar a query
 			if(!($result = @ mysqli_query($db, $query)))

@@ -24,7 +24,7 @@ export const useJobCategoriesStore = defineStore({
     },
     async getCategoriesDB() {
             try {
-                const response = await fetch('http://daw.deei.fct.ualg.pt/~a12345/EXAME/api/jobcategories.php')
+                const response = await fetch('http://daw.deei.fct.ualg.pt/~a12345/FINALISTAS/api/jobcategories.php')
                 const data = await response.json()
                 console.log('received data:', data)                
                 this.addCategories(data)

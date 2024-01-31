@@ -4,7 +4,7 @@
                 <!-- AVISO: EM router/index.js ALTERAR O PATH '/' PARA O COMPONENTE 'Home' NO EXAME  -->
                 <div id="exame">            
                     <img alt="Vue logo" src="@/assets/logo.png">
-                    <h1>Welcome to Your EXAME Vue App</h1>
+                    <h1>Welcome to Your EXAME FINALISTAS Vue 3 App</h1>
                 </div>	
 
     </div>

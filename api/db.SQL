@@ -1,17 +1,31 @@
 SET FOREIGN_KEY_CHECKS=0;
 
 --
--- Drop tables
+-- Table structure for table `users`
 --
-
-DROP TABLE IF EXISTS `jobs`;
-DROP TABLE IF EXISTS `jobcategories`;
-DROP TABLE IF EXISTS `publishers`;
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+ `id` int(11) NOT NULL auto_increment,
+ `name` varchar(255) default NULL,
+ `email` varchar(255) default NULL,
+ `created_at` datetime NOT NULL,
+ `updated_at` datetime NOT NULL,
+ `password_digest` varchar(255) default NULL,
+ `remember_digest` varchar(255) default NULL,
+ `admin` tinyint(1) default NULL,
+ `activation_digest` varchar(255) default NULL,
+ `activated` tinyint(1) default NULL,
+ `activated_at` datetime default NULL,
+ `reset_digest` varchar(255) default NULL,
+ `reset_sent_at` datetime default NULL,
+ PRIMARY KEY (`id`),
+ UNIQUE KEY `index_users_on_email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `publishers`
 --
-
+DROP TABLE IF EXISTS `publishers`;
 CREATE TABLE `publishers` (
  `id` int(11) NOT NULL auto_increment,
  `name` varchar(255) default NULL,
@@ -39,7 +53,7 @@ INSERT INTO `publishers` VALUES (1,'John Stewart','john.stewart@gmail.com','2019
 --
 -- Table structure for table `jobcategories`
 --
-
+DROP TABLE IF EXISTS `jobcategories`;
 CREATE TABLE `jobcategories` (
  `id` int(11) NOT NULL auto_increment,
  `name` varchar(255) default NULL,
@@ -57,7 +71,7 @@ INSERT INTO `jobcategories` VALUES (1,'Full-time',NULL,NULL),(2,'Part-time',NULL
 --
 -- Table structure for table `jobs`
 --
-
+DROP TABLE IF EXISTS `jobs`;
 CREATE TABLE `jobs` (
  `id` int(11) NOT NULL auto_increment,
  `cat_id` int(11) NOT NULL,
@@ -80,6 +94,24 @@ CREATE TABLE `jobs` (
 --
 
 INSERT INTO `jobs` VALUES (1,3,1,'Dropbox Product Designer','Software startup','2019-12-18 23:25:53','Developing cutting-edge digital solutions','Barcelona',50000,'1.jpg'),(2,2,2,'Senior Programmer in Laravel','Spotify ','2019-12-18 23:25:53','You will work alongside some of the best developers','Faro',70000,'2.jpg'),(3,1,3,'FullStack Developer in Shopify','Facebook','2019-12-18 23:30:51','Do you look beyond the code and back-end solution?','Brussels',80000,'3.jpg'),(4,4,4,'Dropbox Product Designer','Yahoo','2019-12-18 23:30:51','Back-end developer with expertise in Java','Dublin',60000,'4.jpg'),(5,5,5,'Front End Developer in Vue.js','Ebay','2019-12-18 23:33:15','Front-end developer who masters JavaScript, Angular, React, Vue','London',50000,'5.jpg');
+
+--
+-- Table structure for table `applications`
+--
+DROP TABLE IF EXISTS `applications`;
+CREATE TABLE `applications` (
+ `id` int(11) NOT NULL auto_increment,
+ `job_id` int(11) NOT NULL, 
+ `user_id` int(11) NOT NULL,
+ `motivation` varchar(255) default NULL,
+ `cvpdf` varchar(255) default NULL,
+ `salary` int(11) default NULL,
+ `created_at` datetime NOT NULL,
+ PRIMARY KEY (`id`),
+ UNIQUE KEY (`job_id`,`user_id`),
+ CONSTRAINT FOREIGN KEY (`job_id`) REFERENCES `jobs` (`id`),
+ CONSTRAINT FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 SET FOREIGN_KEY_CHECKS=1;
 

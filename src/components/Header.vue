@@ -19,7 +19,7 @@
 
 				<ul v-else class="site-menu js-clone-nav ">
 					<li><router-link to="/jobs">Jobs</router-link></li>					
-					<li><router-link to="/publish">Publish</router-link></li>
+					<li><router-link to="/myapplications">My Applications</router-link></li>
 					<li><a @click.prevent="logout()" href="/logout">Logout</a></li>
 					<li><a href="#">Welcome {{ userName }}</a></li>			  
 				</ul>

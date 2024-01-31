@@ -46,7 +46,7 @@ export const useJobsStore = defineStore({
     },  
     async getJobsDB() {
             try {
-                const response = await fetch('http://daw.deei.fct.ualg.pt/~a12345/EXAME/api/jobs.php')
+                const response = await fetch('http://daw.deei.fct.ualg.pt/~a12345/FINALISTAS/api/jobs.php')
                 const data = await response.json()
                 console.log('received data:', data)                
                 this.addjobs(data)
@@ -69,7 +69,7 @@ export const useJobsStore = defineStore({
       //}         
       try {
               const userStore = useUserStore()
-              const response = await fetch(`http://daw.deei.fct.ualg.pt/~a12345/EXAME/api/jobs.php?session_id=${userStore.user.session_id}`, {
+              const response = await fetch(`http://daw.deei.fct.ualg.pt/~a12345/FINALISTAS/api/jobs.php?session_id=${userStore.user.session_id}`, {
               method: 'POST',
               body: JSON.stringify(newJob),
               headers: { 'Content-type': 'text/html; charset=UTF-8' },
